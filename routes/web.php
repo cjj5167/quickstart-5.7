@@ -11,6 +11,15 @@
 |
 */
 
+use App\Widget;
+
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/widgets', function () {
+    $widgets = Widget::all();
+
+    return view('widgets.index')
+        ->with('widgets', $widgets);
 });
