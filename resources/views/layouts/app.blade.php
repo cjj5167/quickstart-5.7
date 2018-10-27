@@ -76,6 +76,7 @@
         </nav>
 
         <main class="py-4">
+            @include('partials.notifications')
             @yield('content')
         </main>
     </div>

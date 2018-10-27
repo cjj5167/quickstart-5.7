@@ -14,7 +14,10 @@ class WidgetCreateTest extends TestCase
      */
     public function testRouteWorks()
     {
-        $this->visit('/widgets/add')
+        $user = factory(App\User::class)->create();
+
+        $this->actingAs($user)
+            ->visit('/widgets/add')
             ->see('Add Widget');
 
         $this->assertResponseOk();
@@ -22,7 +25,10 @@ class WidgetCreateTest extends TestCase
 
     public function testFormSubmitWorks()
     {
-        $this->visit('/widgets/add')
+        $user = factory(App\User::class)->create();
+
+        $this->actingAs($user)
+            ->visit('/widgets/add')
             ->type('Test Widget', 'name')
             ->type('Great Widget', 'description')
             ->type('49.99', 'price')
@@ -37,10 +43,40 @@ class WidgetCreateTest extends TestCase
 
     public function testFormValidation()
     {
-        $this->visit('/widgets/add')
+        $user = factory(App\User::class)->create();
+
+        $this->actingAs($user)
+            ->visit('/widgets/add')
             ->type('Great Widget', 'description')
             ->type('49.99', 'price')
             ->press('Add Widget')
+            ->seePageIs('/widgets/add');
+    }
+
+    public function testErrorMessages()
+    {
+        $user = factory(App\User::class)->create();
+
+        $this->actingAs($user)
+            ->visit('/widgets/add')
+            ->press('Add Widget')
+            ->see('You must enter a Widget Name')
+            ->see('You must enter a Widget Description')
+            ->see('You must enter a Widget Price')
+            ->seePageIs('/widgets/add');
+    }
+
+    public function testOldInput()
+    {
+        $user = factory(App\User::class)->create();
+
+        $this->actingAs($user)
+            ->visit('/widgets/add')
+            ->type('Test Widget', 'name')
+            ->press('Add Widget')
+            ->see('You must enter a Widget Description')
+            ->see('You must enter a Widget Price')
+            ->seeInField('name', 'Test Widget')
             ->seePageIs('/widgets/add');
     }
 }
