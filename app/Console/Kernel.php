@@ -2,6 +2,10 @@
 
 namespace App\Console;
 
+use App\Console\Commands\BasicCommand;
+use App\Console\Commands\InputExample;
+use App\Console\Commands\InputPrompt;
+use App\Console\Commands\OptionExample;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -13,7 +17,10 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        BasicCommand::class,
+        InputExample::class,
+        OptionExample::class,
+        InputPrompt::class,
     ];
 
     /**
