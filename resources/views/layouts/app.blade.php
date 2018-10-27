@@ -62,6 +62,8 @@
                                     </a>
                                     <a class="dropdown-item" href="/widgets" name="tasks">Widgets</a>
                                     <a class="dropdown-item" href="/tasks" name="tasks">Tasks</a>
+                                    <a class="dropdown-item" href="/users" name="tasks">Users</a>
+                                    <a class="dropdown-item" href="/marketing/join-list" name="tasks">Join Email List</a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>

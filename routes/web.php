@@ -10,15 +10,15 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-use App\Task;
-use App\Widget;
-use App\User;
-use App\Http\Requests\TaskCreateRequest;
-use App\Http\Requests\WidgetCreateRequest;
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/marketing/join-list', 'MarketingEmailController@showJoin');
+Route::post('/marketing/join-list', 'MarketingEmailController@doJoin');
+Route::get('/marketing/pending', 'MarketingEmailController@showPending')->name('show-pending');
+Route::get('/marketing/verify-email/{hash}', 'MarketingEmailController@validateEmailHash');
 
 Route::get('widgets', 'WidgetController@index')->name('widgets.index');
 Route::get('widgets/add', 'WidgetController@add')->name('widgets.add');
