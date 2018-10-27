@@ -9,12 +9,14 @@
         <thead>
         <tr>
             <th>Name</th>
+            <th>Assigned To</th>
         </tr>
         </thead>
         <tbody>
         @foreach($tasks as $task)
         <tr>
             <td>{{ $task->name }}</td>
+            <td>{{ $task->user->name }}</td>
         </tr>
         @endforeach
         </tbody>
