@@ -27,3 +27,6 @@ Route::post('widgets', 'WidgetController@create')->name('widgets.create');
 Route::get('tasks', 'TaskController@index')->name('tasks.index');
 Route::get('tasks/add', 'TaskController@add')->name('tasks.add');
 Route::post('tasks', 'TaskController@create')->name('tasks.create');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
